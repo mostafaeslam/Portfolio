@@ -64,7 +64,7 @@ portfolio/
 
 ## 🎮 Game Controls
 
-### Desktop Controls
+### Desktop/Laptop Controls
 - **W** or **↑**: Move up
 - **A** or **←**: Move left
 - **S** or **↓**: Move down
@@ -73,21 +73,22 @@ portfolio/
 - **Escape**: Close modal
 - **Enter**: Start game
 
-### Mobile Controls
-- **Virtual D-pad**: Touch the directional buttons to move
-- **Action Button**: Tap to interact with portals when close
-- **Swipe**: Swipe on the game area to move character
-- **Tap Portal**: Tap directly on portals to view content
+### Mobile Support
+*Mobile controls are planned for future updates. Currently optimized for desktop/laptop experience.*
 
 ## 🎨 Design Features
 
 - **Smooth Animations**: Character movement and portal interactions
 - **Visual Feedback**: Glowing effects and hover states
 - **Responsive Layout**: Adapts to different screen sizes
-- **Mobile Optimized**: Touch controls and mobile-friendly interface
+- **Desktop Optimized**: Keyboard controls and desktop-friendly interface
 - **Accessibility**: Keyboard navigation and screen reader support
 - **Modern UI**: Clean, intuitive interface design
 - **Boundary System**: Character and camera stay within world limits
+
+## 🌐 Live Demo
+
+**Visit the live portfolio**: [www.mostafaislam.me](https://www.mostafaislam.me)
 
 ## 🚀 Getting Started
 
@@ -98,21 +99,25 @@ portfolio/
    ```
 
 2. **Open in your browser**:
-   - Simply open `index.html` in any modern web browser
+   - Simply open `index.html` in any modern desktop/laptop browser
    - No build process or dependencies required!
+   - **Note**: Currently optimized for desktop/laptop experience
 
 3. **Start exploring**:
    - Click "Start Exploring" to begin
-   - Use the controls to navigate and discover content
+   - Use the keyboard controls to navigate and discover content
 
 ## 📱 Browser Compatibility
-  
+
+### Desktop/Laptop Browsers
 - ✅ Opera GX (recommended)
 - ✅ Chrome
 - ✅ Firefox
 - ✅ Safari
 - ✅ Edge
-- ✅ Mobile browsers (with touch controls)
+
+### Mobile Support
+*Mobile browser support is planned for future updates. Currently optimized for desktop/laptop browsers.*
 
 ## 🎵 Audio Features
 
@@ -128,6 +133,7 @@ To customize this portfolio for your own use:
 2. **Change Images**: Replace character images in `assets/images/`
 3. **Modify Styling**: Edit CSS files to match your preferred theme
 4. **Add Sections**: Extend the portal system with additional sections
+5. **Mobile Support**: Add touch controls for mobile devices (future enhancement)
 
 ## 📄 License
 
@@ -138,6 +144,9 @@ This project is open source and available under the [MIT License](LICENSE).
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📞 Contact
+
+- **Portfolio Website**: [www.mostafaislam.me](https://www.mostafaislam.me)
+- **GitHub**: [mostafaeslam](https://github.com/mostafaeslam)
 
 Feel free to reach out if you have any questions or suggestions!
 

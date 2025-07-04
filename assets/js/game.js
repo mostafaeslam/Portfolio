@@ -29,7 +29,6 @@ class PortfolioGame {
     this.currentOpenSection = null;
     this.footprintTimer = 0;
     this.lastFootprintLeft = true;
-    this.touchDirection = null; // For mobile touch controls
 
     // Audio elements
     this.sounds = {
@@ -119,35 +118,30 @@ class PortfolioGame {
       });
     }
 
-    // Allow closing modal with Escape key (desktop only)
-    if (!this.isMobile()) {
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          document.getElementById("content-modal").style.display = "none";
-          this.currentOpenSection = null;
-        }
-      });
-    }
+    // Allow closing modal with Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.getElementById("content-modal").style.display = "none";
+        this.currentOpenSection = null;
+      }
+    });
 
     // Start game button
     const startGameBtn = document.getElementById("start-game");
     startGameBtn.addEventListener("click", () => {
       this.startGame();
     });
-
-    // Allow Enter key to start the game (desktop only)
-    if (!this.isMobile()) {
-      document.addEventListener("keydown", (e) => {
-        const welcomeScreen = document.getElementById("welcome-screen");
-        if (
-          (e.key === "Enter" || e.key === "NumpadEnter") &&
-          welcomeScreen &&
-          welcomeScreen.style.display !== "none"
-        ) {
-          this.startGame();
-        }
-      });
-    }
+    // Allow Enter key to start the game
+    document.addEventListener("keydown", (e) => {
+      const welcomeScreen = document.getElementById("welcome-screen");
+      if (
+        (e.key === "Enter" || e.key === "NumpadEnter") &&
+        welcomeScreen &&
+        welcomeScreen.style.display !== "none"
+      ) {
+        this.startGame();
+      }
+    });
   }
 
   startGame() {
@@ -183,14 +177,6 @@ class PortfolioGame {
     requestAnimationFrame(() => this.gameLoop());
   }
 
-  isMobile() {
-    return (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      ) || window.innerWidth <= 768
-    );
-  }
-
   updateCharacterPosition() {
     let moved = false;
     let horizontalDirection = null;
@@ -199,71 +185,29 @@ class PortfolioGame {
     let deltaX = 0;
     let deltaY = 0;
 
-    // Desktop controls
-    if (!this.isMobile()) {
-      if (this.keys["ArrowUp"] || this.keys["w"] || this.keys["W"]) {
-        deltaY = -this.speed;
-        moved = true;
-      }
-      if (this.keys["ArrowDown"] || this.keys["s"] || this.keys["S"]) {
-        deltaY = this.speed;
-        moved = true;
-      }
-      if (this.keys["ArrowLeft"] || this.keys["a"] || this.keys["A"]) {
-        deltaX = -this.speed;
-        moved = true;
-        horizontalDirection = "left";
-      }
-      if (this.keys["ArrowRight"] || this.keys["d"] || this.keys["D"]) {
-        deltaX = this.speed;
-        moved = true;
-        horizontalDirection = "right";
-      }
-    } else {
-      // Mobile touch controls
-      if (this.touchDirection) {
-        switch (this.touchDirection) {
-          case "up":
-            deltaY = -this.speed;
-            moved = true;
-            break;
-          case "down":
-            deltaY = this.speed;
-            moved = true;
-            break;
-          case "left":
-            deltaX = -this.speed;
-            moved = true;
-            horizontalDirection = "left";
-            break;
-          case "right":
-            deltaX = this.speed;
-            moved = true;
-            horizontalDirection = "right";
-            break;
-        }
-      }
+    if (this.keys["ArrowUp"] || this.keys["w"] || this.keys["W"]) {
+      deltaY = -this.speed;
+      moved = true;
+    }
+    if (this.keys["ArrowDown"] || this.keys["s"] || this.keys["S"]) {
+      deltaY = this.speed;
+      moved = true;
+    }
+    if (this.keys["ArrowLeft"] || this.keys["a"] || this.keys["A"]) {
+      deltaX = -this.speed;
+      moved = true;
+      horizontalDirection = "left";
+    }
+    if (this.keys["ArrowRight"] || this.keys["d"] || this.keys["D"]) {
+      deltaX = this.speed;
+      moved = true;
+      horizontalDirection = "right";
     }
 
     if (moved) {
       // Update character position
       this.characterPos.x += deltaX;
       this.characterPos.y += deltaY;
-
-      // Keep character within world bounds
-      const characterWidth = this.character.offsetWidth;
-      const characterHeight = this.character.offsetHeight;
-      const worldWidth = this.gameWorld.scrollWidth;
-      const worldHeight = this.gameWorld.scrollHeight;
-
-      this.characterPos.x = Math.max(
-        0,
-        Math.min(worldWidth - characterWidth, this.characterPos.x)
-      );
-      this.characterPos.y = Math.max(
-        0,
-        Math.min(worldHeight - characterHeight, this.characterPos.y)
-      );
 
       // Position character on screen
       this.positionCharacter();
@@ -405,20 +349,10 @@ class PortfolioGame {
     this.cameraCurrent.x = lerp(this.cameraCurrent.x, this.cameraTarget.x, 0.1);
     this.cameraCurrent.y = lerp(this.cameraCurrent.y, this.cameraTarget.y, 0.1);
 
-    // Calculate camera bounds to prevent going outside the world
     const worldWidth = this.gameWorld.scrollWidth;
     const worldHeight = this.gameWorld.scrollHeight;
-    const screenWidth = this.gameContainer.clientWidth;
-    const screenHeight = this.gameContainer.clientHeight;
-
-    // Clamp camera position to world bounds
-    const maxX = 0;
-    const minX = -(worldWidth - screenWidth);
-    const maxY = 0;
-    const minY = -(worldHeight - screenHeight);
-
-    this.cameraCurrent.x = Math.max(minX, Math.min(maxX, this.cameraCurrent.x));
-    this.cameraCurrent.y = Math.max(minY, Math.min(maxY, this.cameraCurrent.y));
+    const screenWidth = this.gameWorld.clientWidth;
+    const screenHeight = this.gameWorld.clientHeight;
 
     const x = -this.cameraCurrent.x;
     const y = -this.cameraCurrent.y;
@@ -446,117 +380,9 @@ class PortfolioGame {
   updateFootprints() {
     // No-op, but can be used for advanced footprint logic if needed
   }
-
-  createMobileControls() {
-    // Create mobile control overlay
-    const mobileControls = document.createElement("div");
-    mobileControls.id = "mobile-controls";
-    mobileControls.innerHTML = `
-      <div class="mobile-dpad">
-        <button class="dpad-btn up" data-direction="up">▲</button>
-        <div class="dpad-row">
-          <button class="dpad-btn left" data-direction="left">◀</button>
-          <button class="dpad-btn center" disabled></button>
-          <button class="dpad-btn right" data-direction="right">▶</button>
-        </div>
-        <button class="dpad-btn down" data-direction="down">▼</button>
-      </div>
-      <div class="mobile-action-btn">
-        <button class="action-btn" id="mobile-action">👆</button>
-      </div>
-    `;
-    document.body.appendChild(mobileControls);
-
-    // Add touch event listeners
-    const dpadButtons = mobileControls.querySelectorAll(
-      ".dpad-btn[data-direction]"
-    );
-    dpadButtons.forEach((btn) => {
-      const direction = btn.dataset.direction;
-
-      // Touch events
-      btn.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        this.touchDirection = direction;
-        btn.classList.add("active");
-      });
-
-      btn.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        this.touchDirection = null;
-        btn.classList.remove("active");
-      });
-
-      // Mouse events for testing
-      btn.addEventListener("mousedown", (e) => {
-        this.touchDirection = direction;
-        btn.classList.add("active");
-      });
-
-      btn.addEventListener("mouseup", (e) => {
-        this.touchDirection = null;
-        btn.classList.remove("active");
-      });
-
-      btn.addEventListener("mouseleave", (e) => {
-        this.touchDirection = null;
-        btn.classList.remove("active");
-      });
-    });
-
-    // Action button for portal interaction
-    const actionBtn = mobileControls.querySelector("#mobile-action");
-    actionBtn.addEventListener("click", () => {
-      if (this.nearPortal) {
-        this.openSection(this.nearPortal.dataset.section);
-      }
-    });
-
-    // Add swipe controls for camera movement
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let isSwiping = false;
-
-    this.gameContainer.addEventListener("touchstart", (e) => {
-      if (e.touches.length === 1) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        isSwiping = true;
-      }
-    });
-
-    this.gameContainer.addEventListener("touchmove", (e) => {
-      if (isSwiping && e.touches.length === 1) {
-        e.preventDefault();
-        const touchX = e.touches[0].clientX;
-        const touchY = e.touches[0].clientY;
-        const deltaX = touchX - touchStartX;
-        const deltaY = touchY - touchStartY;
-
-        // Move character based on swipe
-        this.characterPos.x += deltaX * 0.5;
-        this.characterPos.y += deltaY * 0.5;
-
-        // Update touch start position
-        touchStartX = touchX;
-        touchStartY = touchY;
-
-        this.positionCharacter();
-      }
-    });
-
-    this.gameContainer.addEventListener("touchend", () => {
-      isSwiping = false;
-    });
-  }
 }
 
 // Initialize the game when the DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   const game = new PortfolioGame();
-
-  // Add mobile touch controls
-  if (game.isMobile()) {
-    game.createMobileControls();
-  }
 });
