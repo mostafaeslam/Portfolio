@@ -143,13 +143,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📞 Contact
-
-- **Portfolio Website**: [www.mostafaislam.me](https://www.mostafaislam.me)
-- **GitHub**: [mostafaeslam](https://github.com/mostafaeslam)
-
-Feel free to reach out if you have any questions or suggestions!
-
 ---
 
 **Enjoy exploring my interactive portfolio! 🎮✨** 
