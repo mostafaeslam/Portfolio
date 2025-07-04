@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Portfolio</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/mario-tooltip.css">
+</head>
+
+<body>
+    <img src="assets/images/SMP.png" alt="Logo" id="site-logo"
+        style="position:fixed;top:20px;left:20px;width:80px;height:auto;z-index:200;">
+
+    <div class="game-container">
+        <div class="game-world" id="game-world">
+            <!-- Character will be inserted via JS -->
+            <div id="character" class="character"></div>
+
+            <!-- CV Section Portals -->
+            <div class="portal" id="about-portal" data-section="about" data-x="300" data-y="400">
+                <div class="portal-icon"><img src="./assets/images/bowser_jr.jpg" alt="Bowser Jr."></div>
+                <div class="portal-label"></div>
+            </div>
+
+            <div class="portal" id="education-portal" data-section="education" data-x="800" data-y="500">
+                <div class="portal-icon"><img src="./assets/images/Super_mario.png" alt="Super Mario">
+                </div>
+                <div class="portal-label"></div>
+            </div>
+
+            <div class="portal" id="experience-portal" data-section="experience" data-x="1200" data-y="1200">
+                <div class="portal-icon"><img src="./assets/images/goomba.jpg" alt="Goomba"></div>
+                <div class="portal-label"></div>
+            </div>
+
+            <div class="portal" id="skills-portal" data-section="skills" data-x="1600" data-y="800">
+                <div class="portal-icon"><img src="./assets/images/MontyMole.jpg" alt="Monty Mole"></div>
+                <div class="portal-label"></div>
+            </div>
+
+            <div class="portal" id="projects-portal" data-section="projects" data-x="1700" data-y="1700">
+                <div class="portal-icon"><img src="./assets/images/Ninja.png" alt="Ninja"></div>
+                <div class="portal-label"></div>
+            </div>
+
+            <div class="portal" id="contact-portal" data-section="contact" data-x="400" data-y="1600">
+                <div class="portal-icon"><img src="./assets/images/Yoshi.jpg" alt="Yoshi"></div>
+                <div class="portal-label"></div>
+            </div>
+        </div>
+        <!-- Move the modal here, outside .game-world -->
+        <div class="modal" id="content-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Section Title</h2>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome screen -->
+        <div class="overlay" id="welcome-screen">
+            <div class="welcome-content">
+                <h1>Welcome to My Interactive Portfolio</h1>
+                <p>Step into an open world built to showcase my journey!</p>
+                <div class="instructions">
+                    <p>Use <strong>WASD</strong> or <strong>arrow keys</strong> to move</p>
+                    <p>Approach the glowing portals to discover different sections of my CV</p>
+                    <p>Try to explore 100% of my portfolio!</p>
+                </div>
+                <button id="start-game">Start Exploring</button>
+            </div>
+        </div>
+
+        <!-- Help screen -->
+        <div class="overlay" id="help-screen" style="display: none;">
+            <div class="help-content">
+                <h2>How to Play</h2>
+                <ul>
+                    <li>Use <strong>WASD</strong> or <strong>arrow keys</strong> to move</li>
+                    <li>Approach portals to learn about different sections of my CV</li>
+                    <li>Click on a portal when close to view its contents</li>
+                    <li>Explore all sections to reach 100% completion</li>
+                </ul>
+                <button id="close-help"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed minimap card in the bottom left -->
+    <!-- Minimap removed as requested -->
+    <!-- From Uiverse.io by SnyDeTreves -->
+    <div class="minimap-card" style="position:fixed;left:32px;bottom:32px;z-index:100;">
+        <div class="map-container">
+            <svg viewBox="0 0 500 500" class="map-background">
+                <rect style="fill: #f5f0e5" width="500" height="500"></rect>
+                <path style="fill: #90daee"
+                    d="M0,367.82c5.83-4.39,14.42-10.16,25.59-15.34,4.52-2.09,43.19-19.51,79.55-11.93,36.1,7.52,35.75,32.55,78.41,60.23,46.34,30.06,109.47,41.21,123.32,22.1,11.95-16.49-22.61-41.92-13.66-84.6,4.85-23.1,22.33-50.71,47.73-58.52,42.42-13.05,78.83,39.45,102.84,23.86,15.81-10.26.01-32.87,22.73-74.43,5.8-10.62,11.65-21.15,11.93-36.93.28-15.69-5.63-26.64-7.95-32.39-6.66-16.45-6.21-45.15,28.84-98.55.23,146.23.46,292.46.69,438.69H0v-132.18Z">
+                </path>
+            </svg>
+            <div class="map-cities">
+                <div style="--x: 5; --y: 67;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign">About Me</span>
+                    </div>
+                </div>
+                <div style="--x: 32; --y: 32;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign anim anim-grow">Education</span>
+                    </div>
+                </div>
+                <div style="--x: 58; --y: 83;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign anim anim-slidein">Contact Me</span>
+                    </div>
+                </div>
+                <div style="--x: 65; --y: 22;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign">Technical Skills</span>
+                    </div>
+                </div>
+                <div style="--x: 87; --y: 58;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign">Projects</span>
+                    </div>
+                </div>
+                <div style="--x: 94; --y: 38;" class="map-city">
+                    <div class="map-city__label">
+                        <span data-icon="" class="map-city__sign anim anim-slidein">Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/game.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

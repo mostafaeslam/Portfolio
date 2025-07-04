@@ -1,0 +1,202 @@
+/* From Uiverse.io by barisdogansutcu */
+
+#help-screen {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #ff9c31;
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(255, 156, 49, 0.5);
+}
+
+#help-screen h2 {
+  color: #ff9c31;
+  margin-top: 0;
+}
+
+#help-screen ul {
+  padding-left: 20px;
+}
+
+#help-screen li {
+  margin: 10px 0;
+}
+
+#close-help {
+  background: #ff9c31;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+#close-help:hover {
+  background: #ce3100;
+}
+
+#welcome-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+}
+
+.welcome-content {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff9c31;
+  border-radius: 12px;
+  padding: 40px 32px 32px 32px;
+  color: #fff;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 24px rgba(255, 156, 49, 0.3);
+  text-align: center;
+}
+
+.welcome-content h1 {
+  color: #ff9c31;
+  margin-bottom: 16px;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.welcome-content p,
+.welcome-content .instructions p {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.welcome-content .instructions {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 18px 16px;
+  margin: 24px 0 32px 0;
+  color: #fff;
+}
+
+#welcome-screen #start-game {
+  background: #ff9c31;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 36px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: background 0.2s;
+}
+
+#welcome-screen #start-game:hover {
+  background: #ce3100;
+}
+
+/* Mario Jamboree Modal Styling */
+.modal-content {
+  background: repeating-linear-gradient(
+    135deg,
+    #ffecb3 0 10px,
+    #ffe082 10px 20px
+  );
+  border: 6px solid #ff9c31;
+  border-radius: 18px;
+  box-shadow: 0 0 32px 8px #ff9c31cc, 0 8px 32px #0008;
+  font-family: "Comic Sans MS", "Comic Sans", "Arial Rounded MT Bold", Arial,
+    sans-serif;
+  position: relative;
+  overflow: unset;
+  animation: modalGlow 1.5s infinite alternate;
+}
+
+@keyframes modalGlow {
+  0% {
+    box-shadow: 0 0 32px 8px #ff9c31cc, 0 8px 32px #0008;
+  }
+  100% {
+    box-shadow: 0 0 48px 16px #ffb031cc, 0 8px 32px #0008;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #ff9c31 60%, #ffe082 100%);
+  border-radius: 12px 12px 0 0;
+  padding: 18px 24px 12px 24px;
+  position: relative;
+}
+
+.modal-header h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-family: inherit;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ff9c31, 0 2px 8px #fff8;
+  margin: 0;
+  flex: 1;
+}
+
+.modal-header::before {
+  content: "";
+}
+.modal-header.ninji::before {
+  content: "👻"; /* Ninji: ghost/ninja emoji as placeholder */
+}
+.modal-header.birdo::before {
+  content: "🦩"; /* Birdo: flamingo as placeholder */
+}
+.modal-header.monty::before {
+  content: "🐹"; /* Monty Mole: hamster as placeholder */
+}
+.modal-header.waluigi::before {
+  content: "🦹‍♂️"; /* Waluigi: villain as placeholder */
+}
+.modal-header.yoshi::before {
+  content: "🦖"; /* Yoshi: dinosaur as placeholder */
+}
+.modal-header.rosalina::before {
+  content: "⭐"; /* Rosalina: star */
+}
+
+.modal-body {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 0 0 12px 12px;
+  color: #a85a00;
+  font-size: 1.15rem;
+  padding: 28px 32px;
+  min-height: 120px;
+  box-shadow: 0 2px 12px #ff9c3122 inset;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+#close-modal {
+  background: #ff9c31;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #ff9c31aa;
+  transition: background 0.2s;
+}
+#close-modal:hover {
+  background: #ce3100;
+}

@@ -1,0 +1,83 @@
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px 2px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px 5px currentColor;
+  }
+  100% {
+    box-shadow: 0 0 10px 2px currentColor;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes completionCelebration {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+.portal {
+  animation: float 3s ease-in-out infinite;
+}
+
+.portal.active {
+  animation: pulse 1.5s infinite;
+}
+
+.portal.visited {
+  opacity: 0.7;
+}
+
+.bounce {
+  animation: bounce 1s;
+}
+
+.completion-celebration {
+  animation: completionCelebration 1.5s infinite;
+}
