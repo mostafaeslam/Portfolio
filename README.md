@@ -64,19 +64,30 @@ portfolio/
 
 ## 🎮 Game Controls
 
+### Desktop Controls
 - **W** or **↑**: Move up
 - **A** or **←**: Move left
 - **S** or **↓**: Move down
 - **D** or **→**: Move right
-- **Click**: Interact with portals when close
+- **E**: Interact with portals when close
+- **Escape**: Close modal
+- **Enter**: Start game
+
+### Mobile Controls
+- **Virtual D-pad**: Touch the directional buttons to move
+- **Action Button**: Tap to interact with portals when close
+- **Swipe**: Swipe on the game area to move character
+- **Tap Portal**: Tap directly on portals to view content
 
 ## 🎨 Design Features
 
 - **Smooth Animations**: Character movement and portal interactions
 - **Visual Feedback**: Glowing effects and hover states
 - **Responsive Layout**: Adapts to different screen sizes
+- **Mobile Optimized**: Touch controls and mobile-friendly interface
 - **Accessibility**: Keyboard navigation and screen reader support
 - **Modern UI**: Clean, intuitive interface design
+- **Boundary System**: Character and camera stay within world limits
 
 ## 🚀 Getting Started
 

@@ -1811,7 +1811,22 @@ body {
 }
 
 #close-modal {
-  display: none !important;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  z-index: 1001;
+}
+
+#close-modal:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Welcome and Help Screens */
@@ -1928,10 +1943,100 @@ body {
   font-size: 0.9rem;
 }
 
+/* Mobile Controls */
+#mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2000;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.mobile-dpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dpad-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.dpad-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #1976d2;
+  background: rgba(255, 251, 233, 0.9);
+  color: #1976d2;
+  border-radius: 12px;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dpad-btn:active,
+.dpad-btn.active {
+  background: #1976d2;
+  color: white;
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dpad-btn.center {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+.mobile-action-btn {
+  display: flex;
+  align-items: center;
+}
+
+.action-btn {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #00c080;
+  background: rgba(255, 251, 233, 0.9);
+  color: #00c080;
+  border-radius: 50%;
+  font-size: 1.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+  background: #00c080;
+  color: white;
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .modal-content {
     width: 95%;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 
   .portal {
@@ -1945,6 +2050,59 @@ body {
 
   .portal-label {
     font-size: 10px;
+  }
+
+  .game-world {
+    width: 1500px;
+    height: 1500px;
+  }
+
+  .character {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Hide minimap on mobile */
+  .minimap-card {
+    display: none !important;
+  }
+
+  /* Improve touch targets */
+  .portal {
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  /* Better modal for mobile */
+  .modal-content {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5em;
+  }
+
+  .modal-body {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  /* Mobile close button */
+  #close-modal {
+    font-size: 2rem;
+    top: 15px;
+    right: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
+}
+
+/* Hide mobile controls on desktop */
+@media (min-width: 769px) {
+  #mobile-controls {
+    display: none !important;
   }
 }
 
