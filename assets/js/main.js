@@ -2,16 +2,37 @@
  * Main application file for the portfolio game
  */
 
+// Mobile device detection function
+function isMobileDevice() {
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    ) ||
+    (window.innerWidth <= 768 && window.innerHeight <= 1024)
+  );
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // Check if user is on mobile device
+  if (isMobileDevice()) {
+    const mobileWarning = document.getElementById("mobile-warning");
+    if (mobileWarning) {
+      mobileWarning.classList.add("show");
+      return; // Don't initialize the game on mobile
+    }
+  }
   // Set current year in the footer if needed
   const currentYearElement = document.getElementById("current-year");
   if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
   }
 
-  // Initialize the game
-  const game = new PortfolioGame();
+  // Initialize the game (only if not on mobile)
+  let game;
+  if (!isMobileDevice()) {
+    game = new PortfolioGame();
+  }
 
   // Ensure proper loading of assets before showing welcome screen
   window.addEventListener("load", () => {
@@ -28,8 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle window resize (adjust character position if needed)
   window.addEventListener("resize", () => {
-    // Ensure character stays in bounds
-    game.positionCharacter();
+    // Check if device became mobile after resize
+    if (isMobileDevice()) {
+      const mobileWarning = document.getElementById("mobile-warning");
+      if (mobileWarning && !mobileWarning.classList.contains("show")) {
+        mobileWarning.classList.add("show");
+        return;
+      }
+    }
+
+    // Ensure character stays in bounds (only if not on mobile)
+    if (!isMobileDevice()) {
+      game.positionCharacter();
+    }
   });
 
   // Theme switcher logic
