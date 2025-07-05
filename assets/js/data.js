@@ -190,7 +190,7 @@ const cvData = {
                 <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
                     <li> Email: <a href="mailto:mostafaeslam1220@gmail.com">mostafaeslam1220@gmail.com</a></li>
                     <li> Phone: +20 111 214 4903</li>
-                    <li> LinkedIn: <a href="https://www.linkedin.com/in/mostafa-eslam-85037423b/" target="_blank">linkedin.com/in/MostafaEslam</a></li>
+                    <li> LinkedIn: <a href="https://www.linkedin.com/in/mostafaeslam/" target="_blank">linkedin.com/in/MostafaEslam</a></li>
                     <li> GitHub: <a href="https://github.com/MostafaEslam" target="_blank">github.com/MostafaEslam</a></li>
                 </ul>
             </div>
